@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Raum-Notizen (WebXR AR Prototype)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Non-WebXR Fallback Overlay -->
+  <div id="fallback-screen" class="screen">
+    <div class="card">
+      <h1>📌 Raum-Notizen (WebXR)</h1>
+      <p>Willkommen zum AR-Prototyp! Erstelle Notizen und 3D-Zeichnungen direkt verankert im Raum.</p>
+      <div id="webxr-status">Prüfe WebXR Support...</div>
+      <button id="start-ar-btn" class="btn primary" disabled>AR Modus Starten</button>
+      <div class="info-box">
+        <h3>Voraussetzungen für Android:</h3>
+        <ul>
+          <li>Google Chrome für Android</li>
+          <li>Google Play Services for AR (ARCore) installiert</li>
+          <li>HTTPS-Verbindung (z. B. via Cloudflare Tunnel)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOM Overlay for WebXR AR Session -->
+  <div id="ar-overlay" class="ar-overlay hidden">
+    <!-- Top Bar Status -->
+    <div class="top-bar">
+      <div id="tracking-badge" class="badge warning">
+        <span class="dot"></span>
+        <span id="tracking-text">Suche Fläche...</span>
+      </div>
+      <button id="exit-ar-btn" class="btn danger small">Beenden</button>
+    </div>
+
+    <!-- Bottom Controls -->
+    <div class="bottom-bar">
+      <!-- Mode Selection -->
+      <div class="mode-selector">
+        <button id="mode-pin-btn" class="btn mode-btn active">📌 Pin</button>
+        <button id="mode-draw-btn" class="btn mode-btn">✏️ Zeichnen</button>
+      </div>
+
+      <!-- Color Swatches -->
+      <div class="color-picker">
+        <div class="color-swatch active" data-color="#ff3b30" style="background:#ff3b30"></div>
+        <div class="color-swatch" data-color="#34c759" style="background:#34c759"></div>
+        <div class="color-swatch" data-color="#007aff" style="background:#007aff"></div>
+        <div class="color-swatch" data-color="#ffcc00" style="background:#ffcc00"></div>
+        <div class="color-swatch" data-color="#af52de" style="background:#af52de"></div>
+        <div class="color-swatch" data-color="#ffffff" style="background:#ffffff"></div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button id="undo-btn" class="btn secondary">↩️ Rückgängig</button>
+      </div>
+    </div>
+
+    <!-- Modal for Note Text Entry -->
+    <div id="note-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Notiz an Pin anheften</h3>
+        <input type="text" id="note-text-input" placeholder="Notiz eingeben..." maxlength="80">
+        <div class="modal-actions">
+          <button id="modal-cancel-btn" class="btn secondary">Abbrechen</button>
+          <button id="modal-save-btn" class="btn primary">Speichern</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

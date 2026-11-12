@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+.venv/
+
+# Environment / Secret Credentials
+.env
+.env.local
+*.pem
+*.key
+
+# System / OS files
+.DS_Store
+Thumbs.db
+*.log
